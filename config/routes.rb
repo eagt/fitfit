@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :etypes
+  resources :muscles
+  resources :equipment
   resources :exercises
 
   root :to => "exercises#index"

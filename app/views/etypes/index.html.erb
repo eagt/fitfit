@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Etypes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @etypes.each do |etype| %>
+      <tr>
+        <td><%= etype.name %></td>
+        <td><%= link_to 'Show', etype %></td>
+        <td><%= link_to 'Edit', edit_etype_path(etype) %></td>
+        <td><%= link_to 'Destroy', etype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Etype', new_etype_path %>

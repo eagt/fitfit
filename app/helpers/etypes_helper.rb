@@ -1,0 +1,2 @@
+module EtypesHelper
+end
