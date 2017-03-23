@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fitfit</title>
+    <title>Fitness</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +10,19 @@
   </head>
 
   <body>
-    <%= yield %>
+
+  	<%= render partial: "shared/navbar" %> <!-- This navbar will come up always -->
+
+  	<div class="container">      
+
+    <div class="row">&nbsp;</div>
+  		<div class="row">
+    	  <div class="col-12">
+          <%= yield %>
+          <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+		  <script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

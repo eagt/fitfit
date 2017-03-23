@@ -1,20 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+        <%= render partial: "shared/leftcard" %>
+        <%= render partial: "shared/centrecard" %>
+        <%= render partial: "shared/rightcard" %>     
+</div>
 
-<h1>Exercises</h1>
+<div class="row">&nbsp;</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Name</th>
-      <th>Muscle</th>
-      <th>Equipment</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="card card-outline-success">
+  <div class="card-header card-inverse card-success text-center">
+    <p id="notice"><%= notice %></p>
+    <h1>Exercises</h1>
+  </div>
 
-  <tbody class="inshtaex">
+  <div class="card-block">
+    <table class="table table-responsive table-striped">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Type</th>
+            <th>Name</th>
+            <th>Muscle</th>
+            <th>Equipment</th>
+            <th>Description</th>
+            <th colspan="3"></th> <!-- only three for the three actions ( show, edit and destroy) --> 
+        </tr>
+      </thead>
+
+      <tbody class="inshtaex">
         <% @user.exercises.each do |exercise| %>
           <tr>
             <td><%= exercise.etypes.size > 1 ? exercise.etypes.first.name + "" + " (+#{exercise.etypes.size - 1})" : exercise.etypes.first.name %></td>
@@ -30,8 +41,14 @@
           </tr>
         <% end %>
       </tbody>
-</table>
+    </table>
+    </div>
+  </div>
+  <%= link_to 'Back', users_path %>
 
-<br>
-
-<%= link_to 'New Exercise', new_user_exercise_path %>
+  <div class="card-footer card-inverse card-success">
+    <%= link_to(new_user_exercise_path, :class=>"card-inverse") do %>
+      <%= icon('file-text-o','New Exercise', class: 'fa-2x') %> 
+      <% end %>
+ 
+  </div>  
