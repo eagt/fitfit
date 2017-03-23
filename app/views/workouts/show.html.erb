@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @workout.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @workout.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @workout.date %>
+</p>
+
+<p>
+  <strong>Lifted weight:</strong>
+  <%= @workout.lifted_weight %>
+</p>
+
+<p>
+  <strong>Weight unit:</strong>
+  <%= @workout.weight_unit %>
+</p>
+
+<p>
+  <strong>Repetitions:</strong>
+  <%= @workout.repetitions %>
+</p>
+
+<%= link_to 'Edit', edit_workout_path(@workout) %> |
+<%= link_to 'Back', workouts_path %>

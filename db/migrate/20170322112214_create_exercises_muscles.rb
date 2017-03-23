@@ -6,6 +6,7 @@ class CreateExercisesMuscles < ActiveRecord::Migration[5.0]
     	t.integer "muscle_id"
     end
     add_index("exercises_muscles",["exercise_id", "muscle_id"])
+    add_index("exercises_muscles", "user_id")
   end
 
   def down 

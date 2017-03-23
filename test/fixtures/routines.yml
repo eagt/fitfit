@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  name: MyString
+  date: 2017-03-23
+  weekly_frequency: MyString
+  days: 2017-03-23
+
+two:
+  user_id: MyString
+  name: MyString
+  date: 2017-03-23
+  weekly_frequency: MyString
+  days: 2017-03-23

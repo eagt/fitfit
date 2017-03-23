@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  date: 2017-03-23
+  weight: MyString
+  weight_unit: MyString
+  fat_pct: MyString
+
+two:
+  user_id: MyString
+  date: 2017-03-23
+  weight: MyString
+  weight_unit: MyString
+  fat_pct: MyString

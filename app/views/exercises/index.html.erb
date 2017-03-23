@@ -14,22 +14,24 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @exercises.each do |exercise| %>
-      <tr>
-        <td><%= exercise.etypes.size > 1 ? exercise.etypes.first.name + "" + " (+#{exercise.etypes.size - 1})" : exercise.etypes.first.name %></td>
-        <td><%= exercise.name %></td> 
-        <td><%= exercise.muscles.size > 1 ? exercise.muscles.first.name + "" + "" + " (+)#{exercise.muscles.size - 1}" : exercise.muscles.first.name %></td>
-        <td><%= exercise.equipment.size > 1 ? exercise.equipment.first.name + "" + "" + " (+)#{exercise.equipment.size - 1}" : exercise.equipment.first.name %></td>
-        <td><%= exercise.description %></td>
-        <td><%= link_to 'Show', exercise %></td>
-        <td><%= link_to 'Edit', edit_exercise_path(exercise) %></td>
-        <td><%= link_to 'Destroy', exercise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <tbody class="inshtaex">
+        <% @user.exercises.each do |exercise| %>
+          <tr>
+            <td><%= exercise.etypes.size > 1 ? exercise.etypes.first.name + "" + " (+#{exercise.etypes.size - 1})" : exercise.etypes.first.name %></td>
+            <td><%= exercise.name %></td> 
+            <td><%= exercise.muscles.size > 1 ? exercise.muscles.first.name + "" + "" + " (+)#{exercise.muscles.size - 1}" : exercise.muscles.first.name %></td>
+            <td><%= exercise.equipment.size > 1 ? exercise.equipment.first.name + "" + "" + " (+)#{exercise.equipment.size - 1}" : exercise.equipment.first.name %></td>
+            <td><%= exercise.description %></td> 
+            <td colspan="1"></td>
+            <td><%= link_to 'Show', user_exercise_path(@user, exercise) %></td>
+            <td><%= link_to 'Edit', edit_user_exercise_path(@user, exercise) %></td>
+            <td><%= link_to 'Destroy', [@user, exercise], confirm: 'Are you sure?', method: :delete %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Exercise', new_exercise_path %>
+<%= link_to 'New Exercise', new_user_exercise_path %>

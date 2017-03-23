@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @routine.user_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @routine.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @routine.date %>
+</p>
+
+<p>
+  <strong>Weekly frequency:</strong>
+  <%= @routine.weekly_frequency %>
+</p>
+
+<p>
+  <strong>Days:</strong>
+  <%= @routine.days %>
+</p>
+
+<%= link_to 'Edit', edit_routine_path(@routine) %> |
+<%= link_to 'Back', routines_path %>

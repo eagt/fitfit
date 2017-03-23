@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @measurement.user_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @measurement.date %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= @measurement.weight %>
+</p>
+
+<p>
+  <strong>Weight unit:</strong>
+  <%= @measurement.weight_unit %>
+</p>
+
+<p>
+  <strong>Fat pct:</strong>
+  <%= @measurement.fat_pct %>
+</p>
+
+<%= link_to 'Edit', edit_measurement_path(@measurement) %> |
+<%= link_to 'Back', measurements_path %>

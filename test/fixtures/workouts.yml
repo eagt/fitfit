@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  name: MyString
+  date: 2017-03-23
+  lifted_weight: MyString
+  weight_unit: MyString
+  repetitions: MyString
+
+two:
+  user_id: MyString
+  name: MyString
+  date: 2017-03-23
+  lifted_weight: MyString
+  weight_unit: MyString
+  repetitions: MyString
