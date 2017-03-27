@@ -16,7 +16,6 @@
     <table class="table table-responsive table-striped">
       <thead class="thead-inverse">
         <tr>
-            <th>User ID</th>
             <th>Type</th>
             <th>Name</th>
             <th>Muscle</th>
@@ -29,7 +28,6 @@
       <tbody class="inshtaex">
         <% @user.exercises.each do |exercise| %>
           <tr>
-          <td><%= exercise.user_id %></td> 
             <td><%= exercise.etypes.size > 1 ? exercise.etypes.first.name + "" + " (+#{exercise.etypes.size - 1})" : exercise.etypes.first.name %></td>
             <td><%= exercise.name %></td> 
             <td><%= exercise.muscles.size > 1 ? exercise.muscles.first.name + "" + "" + " (+)#{exercise.muscles.size - 1}" : exercise.muscles.first.name %></td>
