@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 20170323184823) do
     t.integer "exercise_id"
     t.integer "muscle_id"
     t.index ["exercise_id", "muscle_id"], name: "index_exercises_muscles_on_exercise_id_and_muscle_id"
-    t.index [nil], name: "index_exercises_muscles_on_user_id"
   end
 
   create_table "measurements", force: :cascade do |t|
