@@ -25,7 +25,7 @@
 
 # Ignore bundler config.
 
-
+.DS_Store
 
 
 /.bundle
