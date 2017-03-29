@@ -2,6 +2,7 @@
 
 <table class="table table-responsive table-striped">
   <tbody class="inshtaex">
+    
     <tr>
       <td><%= f.label :etype %></td>
       <td>
@@ -14,8 +15,7 @@
               <td><%= link_to_add_association "Add Etype", f, :etypes, class: 'btn btn-secondary', data:{association_insertion_node: '.add_etype', association_insertion_method: :before} %></td>
             </tr>
           </tbody>  
-        </table>
-        
+        </table>        
       </td>
     </tr>
     
@@ -23,36 +23,46 @@
       <td><%= f.label :name %></td>
       <td><%= f.text_field :name %></td>
     </tr>
->>>>>>> f5f4a8c6869dc65df74c9df15a2b9dd7fc40a7b5
-
 
     <tr>
       <td><%= f.label :muscle %></td>
-      <td><%= f.select(:muscles, @user.muscles.map {|s| [s.name, s.id]})%></td>
+      <td>
+        <table class="table">
+          <tbody>
+            <%= f.fields_for :muscles do |builder| %>
+              <%= render "muscle_fields", :f => builder %>
+            <% end %>
+            <tr class='add_muscle'>
+              <td><%= link_to_add_association "Add Muscle", f, :muscles, class: 'btn btn-secondary', data:{association_insertion_node: '.add_muscle', association_insertion_method: :before} %></td>
+            </tr>
+          </tbody>  
+        </table>        
+      </td>
     </tr>
 
     <tr>
       <td><%= f.label :equipment %></td>
-      <td><%= f.select(:equipment, @user.equipment.map {|s| [s.name, s.id]})%></td>
+      <td>
+        <table class="table">
+          <tbody>
+            <%= f.fields_for :equipment do |builder| %>
+              <%= render "equipment_fields", :f => builder %>
+            <% end %>
+            <tr class='add_equipment'>
+              <td><%= link_to_add_association "Add Equipment", f, :equipment, class: 'btn btn-secondary', data:{association_insertion_node: '.add_equipment', association_insertion_method: :before} %></td>
+            </tr>
+          </tbody>  
+        </table>        
+      </td>
+    </tr>
+
+     <tr>
+      <td><%= f.label :description %></td>
+      <td><%= f.text_field :description %></td>
     </tr>
   </tbody>
 </table>
 
-<<<<<<< HEAD
-  <div class="field">
-    <%= f.label :equipment %>
-    <%= f.select(:equipment, @user.equipment.map {|s| [s.name, s.id]})%>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-=======
 <%= f.submit %>
->>>>>>> f5f4a8c6869dc65df74c9df15a2b9dd7fc40a7b5
+
 <% end %>

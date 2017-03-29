@@ -7,7 +7,7 @@
 		<%= render 'form' %>
 	</div>
   <div class="card-footer card-inverse card-success">
-		<%= link_to 'Show', @user_exercise %>
-		<%= link_to 'Back', @user_exercises_path %>
+		<%= link_to 'Show', user_exercise_path(@user) %> | 
+		<%= link_to 'Back', user_exercises_path %>
 	</div>
 </div>

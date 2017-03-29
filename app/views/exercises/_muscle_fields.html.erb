@@ -1,0 +1,5 @@
+<tr class="nested-fields">
+	<td><%= f.select(:id, @user.muscles.map {|s| [s.name, s.id]}) %></td>
+        <%#= f.text_field :name %>  
+    <td><%= link_to_remove_association "Remove", f, class: 'btn btn-secondary btn-sm' %></td>
+</tr>	

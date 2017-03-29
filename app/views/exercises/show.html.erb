@@ -1,8 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Type:</strong>
+  <ol>
+  <% for etype in @exercise.etypes %>
+  	<li><%=h etype.name %></li>
+  	<% end %>
+  </ol>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @exercise.name %>
+</p>
+
+<p>
+  <strong>Muscle:</strong>
+    <ol>
+  <% for muscle in @exercise.muscles %>
+  	<li><%=h muscle.name %></li>
+  	<% end %>
+  </ol>
+</p>
+
+<p>
+  <strong>Equipment:</strong>
+    <ol>
+  <% for equipment in @exercise.equipment %>
+  	<li><%=h equipment.name %></li>
+  	<% end %>
+  </ol>
 </p>
 
 <p>
@@ -11,4 +38,4 @@
 </p>
 
 <%= link_to 'Edit', edit_user_exercise_path(@user, @exercise)%> |
-<%= link_to 'Back', user_exercises_path %> | 
+<%= link_to 'Back', user_exercises_path %> 
