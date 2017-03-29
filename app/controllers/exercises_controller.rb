@@ -45,21 +45,20 @@ class ExercisesController < ApplicationController
 
   # PATCH/PUT /exercises/1
   # PATCH/PUT /exercises/1.json
-  def update
+  def update    
     @user = User.find(params[:user_id])
     @exercise = Exercise.find(params[:id])
-    respond_to do |format|
       if @exercise.update(exercise_params)
-        @exercise.etypes.delete(@exercise.etypes.first) if not(@exercise.etypes.empty?)
-        @exercise.etypes << Etype.find(params[:exercise][:etypes])
-
-        format.html { redirect_to user_exercises_path(@user), notice: 'Exercise was successfully updated.' }
-        format.json { render :show, status: :ok, location: @exercise }
+        @exercise.etypes.delete_all if not(@exercise.etypes.empty?)        
+        params[:exercise][:etypes_attributes].each do |etype|
+          @exercise.etypes << Etype.find(params[:exercise][:etypes_attributes][etype][:id]) if params[:exercise][:etypes_attributes][etype][:_destroy]=="false"
+        end
+        redirect_to edit_user_exercise_path(@user, @exercise), notice: 'Exercise was successfully updated.'
+        
       else
-        format.html { render :edit }
-        format.json { render json: edit_user_exercise_path(@user, exercise), status: :unprocessable_entity }
+        redirect_to edit_user_exercise_path(@user, @exercise), notice: 'ERROR: Exercise was NOT updated.'
+        
       end
-    end
   end
 
   # DELETE /exercises/1
@@ -80,6 +79,8 @@ class ExercisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_params
-      params.require(:exercise).permit(:id, :name, :description, :user_id, :etypes_attributes => [:id, :name])
+      #params.require(:exercise).permit(:id, :name, etypes_attributes: Etype.attribute_names.map(&:to_sym).push(:_destroy))
+      params.require(:exercise).permit(:id, :name)
+
     end
 end

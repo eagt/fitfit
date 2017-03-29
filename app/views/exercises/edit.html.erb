@@ -1,8 +1,13 @@
-<h1>Editing Exercise</h1>
-
-<%= render 'form', exercise: @exercise  %>
-
-<%= link_to 'Show', @user_exercise %> |
-<%= link_to 'Back', @user_exercises_path %>
-
-
+<div class="card card-outline-success">
+	<div class="card-header card-inverse card-success text-center">
+		<p id="notice"><%= notice %></p>
+  	<h1>Editing Exercise</h1>
+ 	</div>
+	<div class="card-block">
+		<%= render 'form' %>
+	</div>
+  <div class="card-footer card-inverse card-success">
+		<%= link_to 'Show', @user_exercise %>
+		<%= link_to 'Back', @user_exercises_path %>
+	</div>
+</div>

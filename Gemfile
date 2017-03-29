@@ -11,7 +11,7 @@ gem 'rails', '~> 5.0.2'
 
 #Used on cocoon
 gem 'simple_form'
-gem 'cocoon', '~> 1.2', '>= 1.2.9'
+gem 'cocoon'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -38,6 +38,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+# Nested forms
+gem "cocoon"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

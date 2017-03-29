@@ -1,7 +1,5 @@
-<div class="nested-fields">  
- <%= link_to_remove_association "Remove Etype", f, :etypes, class: 'btn btn-primary btn-xs' %> 
-    <%= f.label :name %>
-    <%= f.text_field :name %>
- </div>
-
-
+<tr class="nested-fields">
+	<td><%= f.select(:id, @user.etypes.map {|s| [s.name, s.id]}) %></td>
+        <%#= f.text_field :name %>  
+    <td><%= link_to_remove_association "Remove", f, class: 'btn btn-secondary btn-sm' %></td>
+</tr>	

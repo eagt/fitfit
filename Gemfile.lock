@@ -175,7 +175,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha6)
   byebug
-  cocoon (~> 1.2, >= 1.2.9)
+  cocoon
   coffee-rails (~> 4.2)
   font-awesome-sass (~> 4.7.0)
   jbuilder (~> 2.5)

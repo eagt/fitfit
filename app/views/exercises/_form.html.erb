@@ -1,24 +1,44 @@
 <%= form_for [@user, @exercise] do |f| %> 
 
+<table class="table table-responsive table-striped">
+  <tbody class="inshtaex">
+    <tr>
+      <td><%= f.label :etype %></td>
+      <td>
+        <table class="table">
+          <tbody>
+            <%= f.fields_for :etypes do |builder| %>
+              <%= render "etype_fields", :f => builder %>
+            <% end %>
+            <tr class='add_etype'>
+              <td><%= link_to_add_association "Add Etype", f, :etypes, class: 'btn btn-secondary', data:{association_insertion_node: '.add_etype', association_insertion_method: :before} %></td>
+            </tr>
+          </tbody>  
+        </table>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><%= f.label :name %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+>>>>>>> f5f4a8c6869dc65df74c9df15a2b9dd7fc40a7b5
 
-  <div class="et">
-    <%= f.simple_fields_for :etypes do |builder| %>
-    <% render 'etype_fields', f:builder %>
-    <% end %>
-  </div>
-  <%= link_to_add_association "Add Etype", f, :etypes, class: 'btn btn-primary', data: {association_insertion_node: '.et', association_insertion_method: :append} %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+    <tr>
+      <td><%= f.label :muscle %></td>
+      <td><%= f.select(:muscles, @user.muscles.map {|s| [s.name, s.id]})%></td>
+    </tr>
 
+    <tr>
+      <td><%= f.label :equipment %></td>
+      <td><%= f.select(:equipment, @user.equipment.map {|s| [s.name, s.id]})%></td>
+    </tr>
+  </tbody>
+</table>
 
-  <div class="field">
-    <%= f.label :muscle %>
-    <%= f.select(:muscles, @user.muscles.map {|s| [s.name, s.id]})%>
-  </div>
-
+<<<<<<< HEAD
   <div class="field">
     <%= f.label :equipment %>
     <%= f.select(:equipment, @user.equipment.map {|s| [s.name, s.id]})%>
@@ -32,4 +52,7 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+=======
+<%= f.submit %>
+>>>>>>> f5f4a8c6869dc65df74c9df15a2b9dd7fc40a7b5
 <% end %>
