@@ -51,30 +51,26 @@ class ExercisesController < ApplicationController
       if @exercise.update(exercise_params)
         @exercise.etypes.delete_all if not(@exercise.etypes.empty?)        
         params[:exercise][:etypes_attributes].each do |etype|
-          @exercise.etypes << Etype.find(params[:exercise][:etypes_attributes][etype][:id]) if params[:exercise][:etypes_attributes][etype][:_destroy]=="false"
+          @exercise.etypes << Etype.find(params[:exercise][:etypes_attributes][etype][:id]) if params[:exercise][:etypes_attributes][etype][:_destroy]=="false" && (@exercise.etypes.empty? ? true : not(@exercise.etypes.map(&:id).include?(params[:exercise][:etypes_attributes][etype][:id].to_i)))
         end
-      end
 
-      if @exercise.update(exercise_params)
+        
         @exercise.muscles.delete_all if not(@exercise.muscles.empty?)        
         params[:exercise][:muscles_attributes].each do |muscle|
           @exercise.muscles << Muscle.find(params[:exercise][:muscles_attributes][muscle][:id]) if params[:exercise][:muscles_attributes][muscle][:_destroy]=="false"
         end
-      end
-
-      if @exercise.update(exercise_params)
+        
         @exercise.equipment.delete_all if not(@exercise.equipment.empty?)        
         params[:exercise][:equipment_attributes].each do |equipment|
           @exercise.equipment << Equipment.find(params[:exercise][:equipment_attributes][equipment][:id]) if params[:exercise][:equipment_attributes][equipment][:_destroy]=="false"
         end
-      end
-
+      
        redirect_to user_exercises_path(@user, @exercise), notice: 'Exercise was successfully updated.' 
-              
-      else
-        redirect_to edit_user_exercise_path(@user, @exercise), notice: 'ERROR: Exercise was NOT updated.'        
-  end
 
+      else
+       redirect_to edit_user_exercise_path(@user, @exercise), notice: 'ERROR: Exercise was NOT updated.'        
+      end
+end
 
 
 

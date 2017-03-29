@@ -28,7 +28,7 @@
       <tbody class="inshtaex">
         <% @user.exercises.each do |exercise| %>
           <tr>
-            <td><%= exercise.etypes.size > 1 ? exercise.etypes.first.name + "" + " (+#{exercise.etypes.size - 1})" : exercise.etypes.first.name %></td>
+            <td><%= exercise.etypes.size == 0 ? " " : exercise.etypes.size > 1 ? exercise.etypes.first.name + "" + " (+#{exercise.etypes.size - 1})" : exercise.etypes.first.name %></td>
             <td><%= exercise.name %></td> 
             <td><%= exercise.muscles.size > 1 ? exercise.muscles.first.name + "" + "" + " (+)#{exercise.muscles.size - 1}" : exercise.muscles.first.name %></td>
             <td><%= exercise.equipment.size > 1 ? exercise.equipment.first.name + "" + "" + " (+)#{exercise.equipment.size - 1}" : exercise.equipment.first.name %></td>
