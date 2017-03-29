@@ -1,27 +1,41 @@
 <%= form_for [@user, @exercise] do |f| %> 
 
-  <div class="field">
-    <%= f.label :etype %>
-    <%= f.select(:etypes, @user.etypes.map {|s| [s.name, s.id]}) %>
-  </div>
+<table class="table table-responsive table-striped">
+  <tbody class="inshtaex">
+    <tr>
+      <td><%= f.label :etype %></td>
+      <td>
+        <table class="table">
+          <tbody>
+            <%= f.fields_for :etypes do |builder| %>
+              <%= render "etype_fields", :f => builder %>
+            <% end %>
+            <tr class='add_etype'>
+              <td><%= link_to_add_association "Add Etype", f, :etypes, class: 'btn btn-secondary', data:{association_insertion_node: '.add_etype', association_insertion_method: :before} %></td>
+            </tr>
+          </tbody>  
+        </table>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><%= f.label :name %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
 
+    <tr>
+      <td><%= f.label :muscle %></td>
+      <td><%= f.select(:muscles, @user.muscles.map {|s| [s.name, s.id]})%></td>
+    </tr>
 
-  <div class="field">
-    <%= f.label :muscle %>
-    <%= f.select(:muscles, @user.muscles.map {|s| [s.name, s.id]})%>
-  </div>
+    <tr>
+      <td><%= f.label :equipment %></td>
+      <td><%= f.select(:equipment, @user.equipment.map {|s| [s.name, s.id]})%></td>
+    </tr>
+  </tbody>
+</table>
 
-  <div class="field">
-    <%= f.label :equipment %>
-    <%= f.select(:equipment, @user.equipment.map {|s| [s.name, s.id]})%>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= f.submit %>
 <% end %>

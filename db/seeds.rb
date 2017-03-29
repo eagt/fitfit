@@ -41,6 +41,12 @@ ex3 = Exercise.create({id: 3, user_id: 1, name: "Lateral side Gluteus", descript
 ex4 = Exercise.create({id: 4, user_id: 2, name: "Back strecth ", description: "Jump on your back"})
 ex5 = Exercise.create({id: 5, user_id: 2, name:"Legs Up ", description: "Feet looking at your eyes"})
 
+m1 = Measurement.create({id: 1, user_id: 1, date: DateTime.new(2017, 3, 22), weight: 80.5, weight_unit: "Kg", fat_pct: 17.5})
+m2 = Measurement.create({id: 2, user_id: 1, date: DateTime.new(2017, 3, 23), weight: 81.5, weight_unit: "Kg", fat_pct: 17.7})
+m3 = Measurement.create({id: 3, user_id: 1, date: DateTime.new(2017, 3, 24), weight: 83.5, weight_unit: "Kg", fat_pct: 17.3})
+m4 = Measurement.create({id: 4, user_id: 1, date: DateTime.new(2017, 3, 30), weight: 79.5, weight_unit: "Kg", fat_pct: 17})
+m5 = Measurement.create({id: 5, user_id: 1, date: DateTime.new(2017, 3, 31), weight: 80, weight_unit: "Kg", fat_pct: 16.8})
+
 exet1 = ex1.etypes << et1
 exet7 = ex1.etypes << et2
 exet1 = ex1.equipment << eq1
