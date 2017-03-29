@@ -1,9 +1,12 @@
 <%= form_for [@user, @exercise] do |f| %> 
 
-  <div class="field">
-    <%= f.label :etype %>
-    <%= f.select(:etypes, @user.etypes.map {|s| [s.name, s.id]}) %>
+
+  <div class="et">
+    <%= f.simple_fields_for :etypes do |builder| %>
+    <% render 'etype_fields', f:builder %>
+    <% end %>
   </div>
+  <%= link_to_add_association "Add Etype", f, :etypes, class: 'btn btn-primary', data: {association_insertion_node: '.et', association_insertion_method: :append} %>
 
   <div class="field">
     <%= f.label :name %>
@@ -19,6 +22,11 @@
   <div class="field">
     <%= f.label :equipment %>
     <%= f.select(:equipment, @user.equipment.map {|s| [s.name, s.id]})%>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
   </div>
 
   <div class="actions">

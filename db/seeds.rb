@@ -32,7 +32,7 @@ eq4 = Equipment.create({id: 4, user_id: 2, name: "Elastic band"})
 mu1 = Muscle.create({id: 1, user_id: 1, name: "Biceps"})
 mu2 = Muscle.create({id: 2, user_id: 1, name: "Triceps"})
 mu3 = Muscle.create({id: 3, user_id: 1, name: "Gluteus"})
-mu4 = Muscle.create({id: 4, user_id: 1, name: "Quadriceps"})
+mu4 = Muscle.create({id: 4, user_id: 2, name: "Quadriceps"})
 
 #I create variables for exercise (et 1 to 5)
 ex1 = Exercise.create({id: 1, user_id: 1, name: "Arms U ", description: "Testing arms up to 1h" })
@@ -40,26 +40,32 @@ ex2 = Exercise.create({id: 2, user_id: 1, name: "Arms Down ", description: "More
 ex3 = Exercise.create({id: 3, user_id: 1, name: "Lateral side Gluteus", description: "Kick lateral during 10minutes"})
 ex4 = Exercise.create({id: 4, user_id: 2, name: "Back strecth ", description: "Jump on your back"})
 ex5 = Exercise.create({id: 5, user_id: 2, name:"Legs Up ", description: "Feet looking at your eyes"})
+ex6 = Exercise.create({id: 6, user_id: 2, name:"Legs Down ", description: "Feet looking down"})
+
 
 exet1 = ex1.etypes << et1
 exet7 = ex1.etypes << et2
-exet1 = ex1.equipment << eq1
-exet1 = ex1.muscles << mu1
+exeq1 = ex1.equipment << eq1
+exmu1 = ex1.muscles << mu1
 
 ex2et2 = ex2.etypes << et2
-ex2et2 = ex2.equipment << eq2
-ex2et2 = ex2.muscles << mu2
+ex2eq2 = ex2.equipment << eq2
+ex2mu2 = ex2.muscles << mu2
 
 ex3et3 = ex3.etypes << et3
-ex3et3 = ex3.equipment << eq3
-ex3et3 = ex3.muscles << mu3
+ex3eq3 = ex3.equipment << eq2
+ex3mu3 = ex3.muscles << mu3
 
-ex4et4 = ex4.etypes << et1
-ex4et4 = ex4.equipment << eq4
-ex4et4 = ex4.muscles << mu4
+ex4et1 = ex4.etypes << et1
+ex4eq4 = ex4.equipment << eq4
+ex4mu4 = ex4.muscles << mu4
 
 ex5et5 = ex5.etypes << et3
-ex5et5 = ex5.equipment << eq2
-ex5et5 = ex5.muscles << mu3
+ex5eq2 = ex5.equipment << eq2
+ex5mu3 = ex5.muscles << mu3
+
+ex6et1 = ex6.etypes << et1
+ex6eq2 = ex6.equipment << eq2
+ex6mu3 = ex6.muscles << mu3
 
 p "Created #{Exercise.count} exercises"  

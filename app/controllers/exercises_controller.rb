@@ -1,5 +1,5 @@
 class ExercisesController < ApplicationController
-  before_action :set_exercise, only: [:show, :update, :destroy] # :edit, deleted for a while
+  before_action :set_exercise, only: [:show, :update, :destroy, :edit] # :edit, deleted for a while
 
   # GET /exercises
   # GET /exercises.json
@@ -11,10 +11,6 @@ class ExercisesController < ApplicationController
 
   # GET /exercises/1
   # GET /exercises/1.json
-  def show
-    @user = User.find(params[:user_id])
-  end
-
    def show
      @user = User.find(params[:user_id]) 
   end
@@ -71,7 +67,7 @@ class ExercisesController < ApplicationController
   def destroy
     @exercise.destroy
     respond_to do |format|
-      format.html { redirect_to exercises_url, notice: 'Exercise was successfully destroyed.' }
+      format.html { redirect_to user_exercises_path(@user), notice: 'Exercise was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -84,6 +80,6 @@ class ExercisesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_params
-      params.require(:exercise).permit(:id, :name, :cosa)
+      params.require(:exercise).permit(:id, :name, :description, :user_id, :etypes_attributes => [:id, :name])
     end
 end
