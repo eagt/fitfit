@@ -1,62 +1,66 @@
 class EtypesController < ApplicationController
   before_action :set_etype, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /etypes
   # GET /etypes.json
   def index
-    @etypes = Etype.all
+   # set_user
   end
 
   # GET /etypes/1
   # GET /etypes/1.json
   def show
+    # set_user
   end
 
   # GET /etypes/new
   def new
+    # set_user
     @etype = Etype.new
-  end
-
-  # GET /etypes/1/edit
-  def edit
   end
 
   # POST /etypes
   # POST /etypes.json
   def create
-    @etype = Etype.new(etype_params)
-
-    respond_to do |format|
-      if @etype.save
-        format.html { redirect_to @etype, notice: 'Etype was successfully created.' }
-        format.json { render :show, status: :created, location: @etype }
+    # set_user
+    @etype = Etype.new(etype_params)        
+      if @user.etypes << @etype
+        redirect_to user_etypes_path(@user, @etype), notice: 'Etype was successfully created.' 
+    
       else
         format.html { render :new }
         format.json { render json: @etype.errors, status: :unprocessable_entity }
-      end
+      
     end
   end
 
+
+  # GET /etypes/1/edit
+  def edit
+    # set_user
+  end
   # PATCH/PUT /etypes/1
   # PATCH/PUT /etypes/1.json
   def update
-    respond_to do |format|
-      if @etype.update(etype_params)
-        format.html { redirect_to @etype, notice: 'Etype was successfully updated.' }
-        format.json { render :show, status: :ok, location: @etype }
+    # set_user
+    if @etype.update(etype_params)
+        @user.etypes << @etype
+        redirect_to user_etypes_path(@user, @etype), notice: 'Exercise was successfully updated.' 
       else
         format.html { render :edit }
         format.json { render json: @etype.errors, status: :unprocessable_entity }
-      end
+      
     end
   end
 
   # DELETE /etypes/1
   # DELETE /etypes/1.json
   def destroy
+    # set_user
     @etype.destroy
     respond_to do |format|
-      format.html { redirect_to etypes_url, notice: 'Etype was successfully destroyed.' }
+      format.html { redirect_to user_etypes_path(@user), notice: 'Etype was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +69,10 @@ class EtypesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_etype
       @etype = Etype.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

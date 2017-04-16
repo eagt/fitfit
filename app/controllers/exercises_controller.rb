@@ -25,16 +25,15 @@ class ExercisesController < ApplicationController
   # POST /exercises.json
   def create
     @user = User.find(params[:user_id])
-    @exercise = Exercise.new(exercise_params)
-    respond_to do |format|
-      if @exercise.save
-        format.html { redirect_to @exercise, notice: 'Exercise was successfully created.' }
-        format.json { render :show, status: :created, location: @exercise }
+    # set_user
+    @exercise = Exercise.new(exercise_params)        
+      if @user.exercises << @exercise
+        redirect_to user_exercises_path(@user, @exercise), notice: 'Etype was successfully created.' 
       else
         format.html { render :new }
         format.json { render json: @exercise.errors, status: :unprocessable_entity }
       end
-    end
+   
   end
 
   # GET /exercises/1/edit
@@ -78,6 +77,7 @@ class ExercisesController < ApplicationController
   # DELETE /exercises/1
   # DELETE /exercises/1.json
   def destroy
+    @user = User.find(params[:user_id])
     @exercise.destroy
     respond_to do |format|
       format.html { redirect_to user_exercises_path(@user), notice: 'Exercise was successfully destroyed.' }
