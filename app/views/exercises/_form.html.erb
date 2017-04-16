@@ -8,7 +8,7 @@
       <td>
         <table class="table">
           <tbody>
-            <%= f.fields_for :etypes do |builder| %>
+            <%= f.fields_for :etypes, include_id: false do |builder| %>
               <%= render "etype_fields", :f => builder %>
             <% end %>
             <tr class='add_etype'>
@@ -29,7 +29,7 @@
       <td>
         <table class="table">
           <tbody>
-            <%= f.fields_for :muscles do |builder| %>
+            <%= f.fields_for :muscles, include_id: false do |builder| %>
               <%= render "muscle_fields", :f => builder %>
             <% end %>
             <tr class='add_muscle'>
@@ -45,7 +45,7 @@
       <td>
         <table class="table">
           <tbody>
-            <%= f.fields_for :equipment do |builder| %>
+            <%= f.fields_for :equipment, include_id: false do |builder| %>
               <%= render "equipment_fields", :f => builder %>
             <% end %>
             <tr class='add_equipment'>

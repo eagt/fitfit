@@ -70,7 +70,7 @@ class ExercisesController < ApplicationController
       else
        redirect_to edit_user_exercise_path(@user, @exercise), notice: 'ERROR: Exercise was NOT updated.'        
       end
-end
+  end
 
 
 

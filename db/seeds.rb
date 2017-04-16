@@ -34,7 +34,7 @@ mu2 = Muscle.create({id: 2, user_id: 1, name: "Triceps"})
 mu3 = Muscle.create({id: 3, user_id: 1, name: "Gluteus"})
 mu4 = Muscle.create({id: 4, user_id: 2, name: "Quadriceps"})
 
-#I create variables for exercise (et 1 to 5)
+#I create variables for exercise (et 1 to 6)
 ex1 = Exercise.create({id: 1, user_id: 1, name: "Arms U ", description: "Testing arms up to 1h" })
 ex2 = Exercise.create({id: 2, user_id: 1, name: "Arms Down ", description: "More testing" })	
 ex3 = Exercise.create({id: 3, user_id: 1, name: "Lateral side Gluteus", description: "Kick lateral during 10minutes"})
