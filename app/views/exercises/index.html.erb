@@ -21,7 +21,7 @@
             <th>Muscle</th>
             <th>Equipment</th>
             <th>Description</th>
-            <th colspan="3"></th> <!-- only three for the three actions ( show, edit and destroy) --> 
+            <th colspan="9"></th> <!-- only three for the three actions ( show, edit and destroy) --> 
         </tr>
       </thead>
 
@@ -44,7 +44,7 @@
     </table>
     </div>
   </div>
-  <%= link_to 'Back', users_path %>
+  <%= link_to 'Back', @user %>
 
   <div class="card-footer card-inverse card-success">
     <%= link_to(new_user_exercise_path, :class=>"card-inverse") do %>
