@@ -1,4 +1,4 @@
-<%= form_for(etype) do |f| %>
+<%= form_for [@user, @etype] do |f| %> 
   <% if etype.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(etype.errors.count, "error") %> prohibited this etype from being saved:</h2>

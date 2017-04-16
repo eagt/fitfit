@@ -1,35 +1,33 @@
 class EquipmentController < ApplicationController
   before_action :set_equipment, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /equipment
   # GET /equipment.json
   def index
-    @equipment = Equipment.all
+    # set_user
   end
 
   # GET /equipment/1
   # GET /equipment/1.json
   def show
+    # set_user
   end
 
   # GET /equipment/new
   def new
+    # set_user
     @equipment = Equipment.new
-  end
-
-  # GET /equipment/1/edit
-  def edit
   end
 
   # POST /equipment
   # POST /equipment.json
   def create
-    @equipment = Equipment.new(equipment_params)
-
-    respond_to do |format|
-      if @equipment.save
-        format.html { redirect_to @equipment, notice: 'Equipment was successfully created.' }
-        format.json { render :show, status: :created, location: @equipment }
+    # set_user
+   @equipment = Equipment.new(equipment_params)        
+      if @user.equipment << @equipment
+        redirect_to user_equipment_path(@user, @equipment), notice: 'Equipment was successfully created.' 
+    
       else
         format.html { render :new }
         format.json { render json: @equipment.errors, status: :unprocessable_entity }
@@ -37,23 +35,29 @@ class EquipmentController < ApplicationController
     end
   end
 
+    # GET /equipment/1/edit
+  def edit
+    # set_user
+  end
+
   # PATCH/PUT /equipment/1
   # PATCH/PUT /equipment/1.json
   def update
-    respond_to do |format|
-      if @equipment.update(equipment_params)
-        format.html { redirect_to @equipment, notice: 'Equipment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @equipment }
+    # set_user
+    if @equipment.update(equipment_params)
+        @user.equipment << @equipment
+        redirect_to user_equipment_path(@user, @equipment), notice: 'Equipment was successfully updated.' 
       else
         format.html { render :edit }
         format.json { render json: @equipment.errors, status: :unprocessable_entity }
-      end
     end
   end
+  
 
   # DELETE /equipment/1
   # DELETE /equipment/1.json
   def destroy
+    # set_user
     @equipment.destroy
     respond_to do |format|
       format.html { redirect_to equipment_index_url, notice: 'Equipment was successfully destroyed.' }
@@ -67,8 +71,11 @@ class EquipmentController < ApplicationController
       @equipment = Equipment.find(params[:id])
     end
 
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def equipment_params
       params.require(:equipment).permit(:name)
     end
-end
