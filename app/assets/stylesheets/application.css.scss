@@ -19,3 +19,13 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+.show{color : #4EAB37};
+.edit{color : #6AA7F7 }
+.destroy{color : #F76A6A }
+.back{color: #010101}
+
+.table_app{
+	@extend .table;
+	@extend .table-responsive;
+	@extend .table-striped;
+}

@@ -1,4 +1,4 @@
-<%= form_for(muscle) do |f| %>
+<%= form_for [@user, @muscle] do |f| %>
   <% if muscle.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(muscle.errors.count, "error") %> prohibited this muscle from being saved:</h2>

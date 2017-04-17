@@ -1,4 +1,4 @@
-<%= form_for(routine) do |f| %>
+<%= form_for [@user, @routine] do |f| %>
   <% if routine.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(routine.errors.count, "error") %> prohibited this routine from being saved:</h2>

@@ -1,34 +1,52 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :update, :destroy, :edit] # :edit, deleted for a while
-
+  before_action :set_user 
   # GET /exercises
   # GET /exercises.json
   def index
-    @user = User.find(params[:user_id])
+    # set_user, is the only action taken here
   end
-
-
 
   # GET /exercises/1
   # GET /exercises/1.json
    def show
-     @user = User.find(params[:user_id]) 
+     # set_user
+     # set_exercise 
    end
 
   # GET /exercises/new
   def new
-    @user = User.find(params[:user_id])
+     # set_user, action takes place here
     @exercise = Exercise.new
+    
   end
 
   # POST /exercises
   # POST /exercises.json
   def create
-    @user = User.find(params[:user_id])
     # set_user
     @exercise = Exercise.new(exercise_params)        
       if @user.exercises << @exercise
-        redirect_to user_exercises_path(@user, @exercise), notice: 'Etype was successfully created.' 
+        
+         #@exercise.etypes.delete_all if not(@exercise.etypes.empty?)        
+        params[:exercise][:etypes_attributes].each do |etype|
+          @exercise.etypes << Etype.find(params[:exercise][:etypes_attributes][etype][:id]) if params[:exercise][:etypes_attributes][etype][:_destroy]=="false" && (@exercise.etypes.empty? ? true : not(@exercise.etypes.map(&:id).include?(params[:exercise][:etypes_attributes][etype][:id].to_i)))
+        end
+
+        
+        #@exercise.muscles.delete_all if not(@exercise.muscles.empty?)        
+        params[:exercise][:muscles_attributes].each do |muscle|
+          @exercise.muscles << Muscle.find(params[:exercise][:muscles_attributes][muscle][:id]) if params[:exercise][:muscles_attributes][muscle][:_destroy]=="false"
+        end
+        
+        #@exercise.equipment.delete_all if not(@exercise.equipment.empty?)        
+        params[:exercise][:equipment_attributes].each do |equipment|
+          @exercise.equipment << Equipment.find(params[:exercise][:equipment_attributes][equipment][:id]) if params[:exercise][:equipment_attributes][equipment][:_destroy]=="false"
+        end
+
+
+
+        redirect_to user_exercises_path, notice: 'Etype was successfully created.' 
       else
         format.html { render :new }
         format.json { render json: @exercise.errors, status: :unprocessable_entity }
@@ -38,15 +56,15 @@ class ExercisesController < ApplicationController
 
   # GET /exercises/1/edit
   def edit
-    @user = User.find(params[:user_id])
-    @exercise = Exercise.find(params[:id])
+     # set_user
+     # set_exercise 
   end
 
   # PATCH/PUT /exercises/1
   # PATCH/PUT /exercises/1.json
   def update    
-    @user = User.find(params[:user_id])
-    @exercise = Exercise.find(params[:id])
+     # set_user
+     # set_exercise 
       if @exercise.update(exercise_params)
         @exercise.etypes.delete_all if not(@exercise.etypes.empty?)        
         params[:exercise][:etypes_attributes].each do |etype|
@@ -77,7 +95,7 @@ class ExercisesController < ApplicationController
   # DELETE /exercises/1
   # DELETE /exercises/1.json
   def destroy
-    @user = User.find(params[:user_id])
+    # set_user, action takes place here
     @exercise.destroy
     respond_to do |format|
       format.html { redirect_to user_exercises_path(@user), notice: 'Exercise was successfully destroyed.' }
@@ -94,7 +112,7 @@ class ExercisesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def exercise_params
       #params.require(:exercise).permit(:id, :name, etypes_attributes: Etype.attribute_names.map(&:to_sym).push(:_destroy))
-      params.require(:exercise).permit(:id, :name)
+      params.require(:exercise).permit(:id, :name, :description)
 
     end
 end

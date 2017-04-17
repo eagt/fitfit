@@ -1,62 +1,72 @@
 class RoutinesController < ApplicationController
   before_action :set_routine, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user 
   # GET /routines
   # GET /routines.json
   def index
-    @routines = Routine.all
+    # set_user, is the only action taken here
   end
 
   # GET /routines/1
   # GET /routines/1.json
   def show
-  end
-
-  # GET /routines/new
-  def new
-    @routine = Routine.new
+    # set_user
+    # set_routine
   end
 
   # GET /routines/1/edit
   def edit
+    # set_user
+    # set_routine
+  end
+
+
+  # GET /routines/new
+  def new
+    # set_user, action takes place here
+    @routine = Routine.new
   end
 
   # POST /routines
   # POST /routines.json
   def create
+    # set_user
     @routine = Routine.new(routine_params)
-
-    respond_to do |format|
-      if @routine.save
-        format.html { redirect_to @routine, notice: 'Routine was successfully created.' }
-        format.json { render :show, status: :created, location: @routine }
+      if @user.routines << @routine
+        redirect_to user_routines_path, notice: 'Routine was successfully created.' 
       else
         format.html { render :new }
         format.json { render json: @routine.errors, status: :unprocessable_entity }
-      end
-    end
+      end  
+  end
+
+  def edit
+    # set_user
+    # set_routine
   end
 
   # PATCH/PUT /routines/1
   # PATCH/PUT /routines/1.json
   def update
-    respond_to do |format|
-      if @routine.update(routine_params)
-        format.html { redirect_to @routine, notice: 'Routine was successfully updated.' }
-        format.json { render :show, status: :ok, location: @routine }
-      else
+    # set_user
+    # set_routine
+    if @routine.update(routine_params)
+        @user.routines << @routine
+        redirect_to user_routines_path(@user, @routine), notice: 'Exercise was successfully updated.' 
+    else
         format.html { render :edit }
         format.json { render json: @routine.errors, status: :unprocessable_entity }
-      end
     end
+   
   end
 
   # DELETE /routines/1
   # DELETE /routines/1.json
   def destroy
+    # set_user, action takes place here
     @routine.destroy
     respond_to do |format|
-      format.html { redirect_to routines_url, notice: 'Routine was successfully destroyed.' }
+      format.html { redirect_to user_routines_path(@user), notice: 'Routine was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

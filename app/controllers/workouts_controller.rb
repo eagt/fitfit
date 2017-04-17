@@ -1,54 +1,57 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user 
   # GET /workouts
   # GET /workouts.json
   def index
-    @workouts = Workout.all
+    # set_user, is the only action taken here
   end
 
   # GET /workouts/1
   # GET /workouts/1.json
   def show
+    # set_user
+    # set_workout
   end
 
   # GET /workouts/new
   def new
+    # set_user
     @workout = Workout.new
-  end
-
-  # GET /workouts/1/edit
-  def edit
   end
 
   # POST /workouts
   # POST /workouts.json
   def create
+    # set_user
     @workout = Workout.new(workout_params)
-
-    respond_to do |format|
-      if @workout.save
-        format.html { redirect_to @workout, notice: 'Workout was successfully created.' }
-        format.json { render :show, status: :created, location: @workout }
+      if @user.workouts << @workout
+        redirect_to user_workouts_path, notice: 'Workout was successfully created.' 
       else
         format.html { render :new }
         format.json { render json: @workout.errors, status: :unprocessable_entity }
       end
-    end
+  end
+
+
+  # GET /workouts/1/edit
+  def edit
+    # set_user
+    # set_workout
   end
 
   # PATCH/PUT /workouts/1
   # PATCH/PUT /workouts/1.json
   def update
-    respond_to do |format|
-      if @workout.update(workout_params)
-        format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
-        format.json { render :show, status: :ok, location: @workout }
+    # set_user
+    # set_workout
+    if @workout.update(workout_params)
+        @user.workouts << @workout
+        redirect_to user_workouts_path(@user, @workout), notice: 'Workout was successfully updated.'
       else
         format.html { render :edit }
         format.json { render json: @workout.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   # DELETE /workouts/1
@@ -56,7 +59,7 @@ class WorkoutsController < ApplicationController
   def destroy
     @workout.destroy
     respond_to do |format|
-      format.html { redirect_to workouts_url, notice: 'Workout was successfully destroyed.' }
+      format.html { redirect_to user_workouts_path(@user), notice: 'Workout was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -6,6 +6,7 @@
 #   movies = Movie.create[{ name: "Star Wars" }, { name: "Lord of the Rings" }],
 #   Character.createname: "Luke", movie: movies.first,
 
+
 Exercise.destroy_all
 Etype.destroy_all
 Muscle.destroy_all
@@ -13,28 +14,40 @@ Equipment.destroy_all
 User.destroy_all
 
 
-
-
 u1 = User.create({id: 1, name: "Alfred", surname: "Baker", email: "ab@test.com", password: "12345678"})
 u2 = User.create({id: 2, name: "Mike", surname: "Brown", email: "mb@test.com", password: "12345678"})
 # Will print the number of exercise created
 p "Created #{User.count} users" 
-#I create variables for etypes (et 1 to10)
+
+#I am creating 6 variables for etypes (et 1 to 6) 3 for each user
 et1 = Etype.create({id: 1, user_id: 1, name: "Strength"}) 
 et2 = Etype.create({id: 2, user_id: 1, name: "Cardio"})
 et3 = Etype.create({id: 3, user_id: 1, name: "Stretching"})
+et4 = Etype.create({id: 4, user_id: 2, name: "Strength"}) 
+et5 = Etype.create({id: 5, user_id: 2, name: "Cardio"})
+et6 = Etype.create({id: 6, user_id: 2, name: "Stretching"})
 
+#I am creating 8 variables for eequipment (eq 1 to 8) 4 for each user
 eq1 = Equipment.create({id: 1, user_id: 1, name: "Flat bench"})
 eq2 = Equipment.create({id: 2, user_id: 1, name: "Body only"})
 eq3 = Equipment.create({id: 3, user_id: 1, name: "Cable"})
-eq4 = Equipment.create({id: 4, user_id: 2, name: "Elastic band"})
+eq4 = Equipment.create({id: 4, user_id: 1, name: "Elastic band"})
+eq5 = Equipment.create({id: 5, user_id: 2, name: "Flat bench"})
+eq6 = Equipment.create({id: 6, user_id: 2, name: "Body only"})
+eq7 = Equipment.create({id: 7, user_id: 2, name: "Cable"})
+eq8 = Equipment.create({id: 8, user_id: 2, name: "Elastic band"})
 
+#I am creating 8 variables for muscles (mu 1 to 8) 4 for each user
 mu1 = Muscle.create({id: 1, user_id: 1, name: "Biceps"})
 mu2 = Muscle.create({id: 2, user_id: 1, name: "Triceps"})
 mu3 = Muscle.create({id: 3, user_id: 1, name: "Gluteus"})
 mu4 = Muscle.create({id: 4, user_id: 2, name: "Quadriceps"})
+mu5 = Muscle.create({id: 5, user_id: 2, name: "Biceps"})
+mu6 = Muscle.create({id: 6, user_id: 2, name: "Triceps"})
+mu7 = Muscle.create({id: 7, user_id: 2, name: "Gluteus"})
+mu8 = Muscle.create({id: 8, user_id: 2, name: "Quadriceps"})
 
-#I create variables for exercise (et 1 to 6)
+#I create 6 variables for exercises (ex 1 to 6) 3 for each user
 ex1 = Exercise.create({id: 1, user_id: 1, name: "Arms U ", description: "Testing arms up to 1h" })
 ex2 = Exercise.create({id: 2, user_id: 1, name: "Arms Down ", description: "More testing" })	
 ex3 = Exercise.create({id: 3, user_id: 1, name: "Lateral side Gluteus", description: "Kick lateral during 10minutes"})
@@ -59,19 +72,20 @@ ex2eq2 = ex2.equipment << eq2
 ex2mu2 = ex2.muscles << mu2
 
 ex3et3 = ex3.etypes << et3
-ex3eq3 = ex3.equipment << eq2
+ex3eq3 = ex3.equipment << eq3
 ex3mu3 = ex3.muscles << mu3
 
-ex4et1 = ex4.etypes << et1
+ex4et4 = ex4.etypes << et4
 ex4eq4 = ex4.equipment << eq4
 ex4mu4 = ex4.muscles << mu4
 
-ex5et5 = ex5.etypes << et3
-ex5eq2 = ex5.equipment << eq2
-ex5mu3 = ex5.muscles << mu3
+ex5et5 = ex5.etypes << et5
+ex5eq5 = ex5.equipment << eq5
+ex5mu5 = ex5.muscles << mu5
 
-ex6et1 = ex6.etypes << et1
-ex6eq2 = ex6.equipment << eq2
-ex6mu3 = ex6.muscles << mu3
+ex6et6 = ex6.etypes << et6
+ex6eq6 = ex6.equipment << eq6
+ex6mu6 = ex6.muscles << mu6
 
 p "Created #{Exercise.count} exercises"  
+
