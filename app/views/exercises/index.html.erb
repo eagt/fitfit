@@ -9,7 +9,7 @@
 <div class="card card-outline-success">
   <div class="card-header card-inverse card-success text-center">
     <p id="notice"><%= notice %></p>    
-    <%= link_to new_tag, new_user_exercise_path, :class=>"card-inverse pull-left" %>
+    <%= link_to new_tag, new_user_exercise_path, :class=>"card-inverse pull-left", title: 'Add New Exercise', 'data-toggle' => 'tooltip', 'data-placement' => 'top'%>
     <h1>Exercises</h1>
    
   </div>
@@ -35,9 +35,9 @@
                   <td><%= exercise.muscles.size == 0 ? " " : exercise.muscles.size > 1 ? exercise.muscles.first.name + "" + " (+#{exercise.muscles.size - 1})" : exercise.muscles.first.name %></td>
                   <td><%= exercise.equipment.size == 0 ? " " : exercise.equipment.size > 1 ? exercise.equipmentfirst.name + "" + " (+#{exercise.equipment.size - 1})" : exercise.equipment.first.name %></td>
                   <td><%= exercise.description %></td> 
-                  <td><%= link_to show_tag, user_exercise_path(@user, exercise) %></td>
-                  <td><%= link_to edit_tag, edit_user_exercise_path(@user, exercise) %></td>
-                  <td><%= link_to destroy_tag, [@user, exercise], confirm: 'Are you sure?', method: :delete %></td>
+                  <td><%= link_to show_tag, user_exercise_path(@user, exercise), title: 'View Exercise', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %></td>
+                  <td><%= link_to edit_tag, edit_user_exercise_path(@user, exercise), title: 'Edit Exercise', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %></td>
+                  <td><%= link_to destroy_tag, [@user, exercise], title: 'Delete Exercise', 'data-toggle' => 'tooltip', 'data-placement' => 'top', confirm: 'Are you sure?', method: :delete %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -46,7 +46,17 @@
           <br>
 
           <div class="card-footer card-inverse card-success">
-             <%= link_to back_tag, @user %>
+             <%#= link_to back_tag, @user %>
+             <%= link_to back_tag, @user,  title: 'Back to User', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %>
           </div>  
+          
+
+
+
+
+
+
+
+
         </div>
 </div>

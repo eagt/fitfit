@@ -6,8 +6,9 @@
 	<div class="card-block">
 		<%= render 'form' %>
 	</div>
-  <div class="card-footer card-inverse card-success">
-		<%= link_to show_tag, user_exercise_path(@user) %> | 
-		<%= link_to back_tag, user_exercises_path %>
+  <div class="card-footer card-inverse ">
+		<%= link_to back_tag, user_exercises_path, title: 'Back to Exercises', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %> | 
+		<%= link_to show_tag, user_exercise_path(@user), title: 'View Exercise', 'data-toggle' => 'tooltip', 'data-placement' => 'top' %> 
+		
 	</div>
 </div>
